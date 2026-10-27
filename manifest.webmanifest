@@ -1,6 +1,6 @@
 {
-  "name": "Anlagenverzeichnis – Reformer 3",
-  "short_name": "Anlagen",
+  "name": "MIRO Equipment-Finder",
+  "short_name": "MIRO Equipment",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -17,5 +17,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "description": "Equipment-Suche für Anlagenbereiche 127, 203 und 205"
 }
