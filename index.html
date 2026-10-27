@@ -37,7 +37,7 @@ const $=id=>document.getElementById(id), esc=s=>String(s??'').replace(/[&<>"']/g
 let items=[];try{items=JSON.parse(localStorage.getItem('anlagen_multi_v1')||'[]')}catch{}if(!Array.isArray(items))items=[];
 // Existing 127 edits from earlier version are migrated without overwriting.
 try{const old=JSON.parse(localStorage.getItem('reformer127')||'[]');if(Array.isArray(old))for(const x of old){if(!items.some(y=>y.area==='127'&&y.number===x.number))items.push({...x,area:'127'})}}catch{}
-for(const x of seed){if(!items.some(y=>y.area===x.area&&y.number===x.number))items.push(x)}
+for(const x of seed){if(!items.some(y=>y.area===x.area&&String(y.number).toUpperCase()===String(x.number).toUpperCase()))items.push(x)}
 const save=()=>localStorage.setItem('anlagen_multi_v1',JSON.stringify(items));save();let selected='Alle',editing=-1;
 const current=()=> $('area').value;
 const normalized=s=>String(s||'').toUpperCase().replace(/\s+/g,'').replace(/[^A-Z0-9]/g,'');
@@ -112,4 +112,6 @@ if('serviceWorker' in navigator) {
  navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
 }
 </script>
+<div id="version-stamp" style="position:fixed;left:10px;bottom:8px;background:#fff;color:#1b5878;border:1px solid #bad3e3;border-radius:8px;padding:5px 9px;font:12px system-ui;z-index:9999">Datenstand: SAP-Import 27.10.2026</div>
+<script>if('caches' in window){caches.keys().then(keys=>Promise.all(keys.map(key=>caches.delete(key)))).catch(()=>{});}</script>
 </body></html>
